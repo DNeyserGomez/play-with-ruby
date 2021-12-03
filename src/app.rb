@@ -9,22 +9,16 @@ class App
     end
     def start
         view = View::Ruby2dView.new
-        initial_state = Model::initial_state
-        Thread.new {
-            init_timer(view)
-        }
+        Thread.new { init_timer(view) }
         view.start(@state)
     end
 
     def init_timer(view)
         loop do
             @state = Actions::move_snake(@state)
-            view.render(@state)
+            view.render_game(@state)
             sleep 0.5
-
-            # trigger movement
         end
-    
     end
 end
 
